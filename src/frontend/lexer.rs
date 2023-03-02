@@ -56,9 +56,9 @@ impl Lexer {
       }
     }
 
-    tokens.push(
+    /* tokens.push(
       make_token(TokenType::EOF, "EndOfFile".to_owned())
-    );
+    ); */
     return tokens;
   }
 

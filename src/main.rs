@@ -7,16 +7,26 @@ pub mod position;
 
 mod frontend;
 
-use frontend::lexer::Lexer;
+use frontend::{
+  lexer::Lexer,
+  parser::Parser
+};
 use std::io::{self, Write};
+
+use crate::frontend::Program;
 
 fn main() {
   loop {
+
     let input = repl();
     let res = split_input(input);
     let tok = Lexer::new(res, "main".to_string()).make_tokens();
 
-    println!("{:#?}", tok);
+    println!("{:?}", &tok);
+
+    let program: Program = Parser::new(tok).produce_ast();
+
+    println!("{:#?}", program);
   }
 }
 
